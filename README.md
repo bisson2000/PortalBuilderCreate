@@ -4,7 +4,7 @@ Where can I find and download the mod?
 
 Dependencies:
 =======
-This mod depends on https://github.com/kyrptonaught/customportalapi
+This mod depends on https://www.curseforge.com/minecraft/mc-mods/custom-portal-api-reforged
 
 Credits:
 =======
