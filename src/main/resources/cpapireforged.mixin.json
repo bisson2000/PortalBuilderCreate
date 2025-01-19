@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "package": "com.bisson2000.portalbuildercreate.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "server": [
+    "IMixinChatScreen",
+    "IMixinMainMenuScreen",
+    "IMixinMinecraft",
+    "IMixinPauseScreen",
+    "IMixinScreen",
+    "IMixinServerList",
+    "IMixinTextFieldWidget",
+    "IMixinWidget",
+    "IMixinWorldLoadProgressScreen",
+    "MixinAbstractList",
+    "MixinConnectingScreen",
+    "MixinConnectScreen",
+    "MixinImageButton",
+    "MixinLevelStorageAccess",
+    "MixinMinecraft",
+    "MixinOnlineServerEntry",
+    "MixinResourceLoadProgressGui",
+    "MixinScreen",
+    "MixinTitleScreen",
+    "MixinWidget",
+    "MixinWorldListEntry"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "cpapireforged.mixin-refmap.json"
+}
