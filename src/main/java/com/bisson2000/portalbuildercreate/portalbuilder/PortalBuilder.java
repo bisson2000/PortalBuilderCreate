@@ -117,8 +117,8 @@ public abstract class PortalBuilder {
     private static void buildIndividualPortal(int customPortalIndex) {
         CustomPortal customPortal = PortalBuilderCreateConfig.CUSTOM_PORTAL_LIST.get(customPortalIndex);
 
-        if (!customPortal.activationFlag()) {
-            PortalBuilderCreate.LOGGER.warn("A portal was left inactive! Was this intentional? Portal from {} to {}", customPortal.fromDim(), customPortal.toDim());
+        if (!customPortal.activationFlag) {
+            PortalBuilderCreate.LOGGER.warn("A portal was left inactive! Was this intentional? Portal from {} to {}", customPortal.fromDim, customPortal.toDim);
             return;
         }
 
@@ -129,39 +129,39 @@ public abstract class PortalBuilder {
         customPortalBuilder.customPortalBlock(ModBlocks.DUMMY_PORTAL_BLOCKS.get(customPortalIndex));
 
         // frame block
-        customPortalBuilder.frameBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(customPortal.frameBlock())));
+        customPortalBuilder.frameBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(customPortal.frameBlock)));
 
         // igniter
-        ResourceLocation igniter = new ResourceLocation(customPortal.igniter());
+        ResourceLocation igniter = new ResourceLocation(customPortal.igniter);
         if (ForgeRegistries.ITEMS.containsKey(igniter)) {
             customPortalBuilder.lightWithItem(ForgeRegistries.ITEMS.getValue(igniter));
         } else if (ForgeRegistries.FLUIDS.containsKey(igniter)) {
             customPortalBuilder.lightWithFluid(ForgeRegistries.FLUIDS.getValue(igniter));
         } else {
-            PortalBuilderCreate.LOGGER.warn("Couldn't find the igniter for portal from {} to {}", customPortal.fromDim(), customPortal.toDim() );
+            PortalBuilderCreate.LOGGER.warn("Couldn't find the igniter for portal from {} to {}", customPortal.fromDim, customPortal.toDim);
         }
 
         // FromDim
-        customPortalBuilder.returnDim(new ResourceLocation(customPortal.fromDim()), false);
+        customPortalBuilder.returnDim(new ResourceLocation(customPortal.fromDim), false);
 
         // ToDim
-        customPortalBuilder.destDimID(new ResourceLocation(customPortal.toDim()));
+        customPortalBuilder.destDimID(new ResourceLocation(customPortal.toDim));
 
         // rgb (tint)
-        customPortalBuilder.tintColor(customPortal.r(), customPortal.g(), customPortal.b());
+        customPortalBuilder.tintColor(customPortal.r, customPortal.g, customPortal.b);
 
         // onlyIgnitableInReturnDim
-        if (customPortal.onlyIgnitInDims()) {
+        if (customPortal.onlyIgnitInDims) {
             customPortalBuilder.onlyLightInOverworld();
         }
 
         // isFlatPortal
-        if (customPortal.isFlatPortal()) {
+        if (customPortal.isFlatPortal) {
             customPortalBuilder.flatPortal();
         }
 
-        if (customPortal.forceSize()) {
-            customPortalBuilder.forcedSize(customPortal.forcedSizeWidth(), customPortal.forcedSizeHeight());
+        if (customPortal.forceSize) {
+            customPortalBuilder.forcedSize(customPortal.forcedSizeWidth, customPortal.forcedSizeHeight);
         }
 
         // Register builder

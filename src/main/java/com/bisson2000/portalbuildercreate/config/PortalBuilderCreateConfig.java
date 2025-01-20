@@ -47,9 +47,16 @@ public class PortalBuilderCreateConfig {
 
             // If the file exists (or we just made one exist), convert it from JSON format to a populated Map object
             CUSTOM_PORTAL_LIST = GSON.fromJson(new FileReader(jsonConfig), CUSTOM_PORTAL_LIST_TYPE);
+            cleanupPortalList();
         } catch (IOException e) {
             // Print an error if something fails
             PortalBuilderCreate.LOGGER.error("Could not create the default configuration for modid: " + PortalBuilderCreate.MOD_ID);
+        }
+    }
+
+    private static void cleanupPortalList() {
+        for (CustomPortal customPortal : CUSTOM_PORTAL_LIST) {
+            customPortal.cleanupFields();
         }
     }
 }
