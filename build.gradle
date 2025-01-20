@@ -94,8 +94,6 @@ minecraft {
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
             args '--nogui'
-
-            // arg "-mixin.config=portalbuildercreate.mixin.json"
         }
 
         // This run config launches GameTestServer and runs all registered gametests, then exits.

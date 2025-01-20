@@ -36,6 +36,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.function.Function;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -128,70 +129,6 @@ public class PortalBuilderCreate
         event.enqueueWork(() -> {
             CustomPortalApiRegistry.getAllPortalLinks().forEach(pl -> AllPortalTracks.registerIntegration(pl.getPortalBlock(), p -> createPortalTrackProvider(p, pl)));
         });
-    }
-
-    private static Pair<ServerLevel, BlockFace> createPortalTrackProvider(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
-        ResourceKey<Level> trainDepot = ResourceKey.create(Registries.DIMENSION, portalLink.dimID);
-        return PortalBuilderCreate.standardPortalProvider(inbound, Level.OVERWORLD, trainDepot, (sl) -> PortalBuilderCreate.wrapCustomTeleporter(inbound, portalLink));
-    }
-
-    public static ITeleporter wrapCustomTeleporter(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
-        return new ITeleporter() {
-
-            @Override
-            public @Nullable PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-
-                return CustomTeleporter.customTPTarget(
-                        destWorld,
-                        entity,
-                        inbound.getSecond().getConnectedPos(),
-                        CustomPortalHelper.getPortalBase(inbound.getFirst(), entity.getOnPos()),
-                        portalLink.getFrameTester());
-            }
-
-        };
-    }
-
-    public static Pair<ServerLevel, BlockFace> standardPortalProvider(Pair<ServerLevel, BlockFace> inbound,
-                                                                      ResourceKey<Level> firstDimension, ResourceKey<Level> secondDimension,
-                                                                      Function<ServerLevel, ITeleporter> customPortalForcer) {
-        ServerLevel level = inbound.getFirst();
-        ResourceKey<Level> resourcekey = level.dimension() == secondDimension ? firstDimension : secondDimension;
-        MinecraftServer minecraftserver = level.getServer();
-        ServerLevel otherLevel = minecraftserver.getLevel(resourcekey);
-
-        if (otherLevel == null || !minecraftserver.isNetherEnabled())
-            return null;
-
-        BlockFace inboundTrack = inbound.getSecond();
-        BlockPos portalPos = inboundTrack.getConnectedPos();
-        BlockState portalState = level.getBlockState(portalPos);
-        ITeleporter teleporter = customPortalForcer.apply(otherLevel);
-
-        SuperGlueEntity probe = new SuperGlueEntity(level, new AABB(portalPos));
-        probe.setYRot(inboundTrack.getFace().toYRot());
-        probe.setPortalEntrancePos();
-
-        PortalInfo portalinfo = teleporter.getPortalInfo(probe, otherLevel, probe::findDimensionEntryPoint);
-        if (portalinfo == null)
-            return null;
-
-        BlockPos otherPortalPos = BlockPos.containing(portalinfo.pos);
-        BlockState otherPortalState = otherLevel.getBlockState(otherPortalPos);
-        if (otherPortalState.getBlock() != portalState.getBlock())
-            return null;
-
-        Direction.Axis axis = otherPortalState.getValue(BlockStateProperties.AXIS);
-        if (axis == Direction.Axis.X) {
-            otherPortalState.setValue(BlockStateProperties.HORIZONTAL_AXIS, Direction.Axis.X);
-            return AllPortalTracks.standardPortalProvider(inbound, firstDimension, secondDimension, customPortalForcer);
-        } else if (axis == Direction.Axis.Z) {
-            otherPortalState.setValue(BlockStateProperties.HORIZONTAL_AXIS, Direction.Axis.Z);
-            return AllPortalTracks.standardPortalProvider(inbound, firstDimension, secondDimension, customPortalForcer);
-        }
-
-        return null;
-
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
