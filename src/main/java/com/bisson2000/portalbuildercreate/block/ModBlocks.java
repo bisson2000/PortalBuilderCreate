@@ -7,6 +7,8 @@ import net.kyrptonaught.customportalapi.CustomPortalsMod;
 import net.kyrptonaught.customportalapi.mixin.client.ChunkRendererRegionAccessor;
 import net.kyrptonaught.customportalapi.util.CustomPortalHelper;
 import net.kyrptonaught.customportalapi.util.PortalLink;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.chunk.RenderChunkRegion;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -19,6 +21,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -69,6 +72,7 @@ public class ModBlocks {
     @Mod.EventBusSubscriber(modid = PortalBuilderCreate.MOD_ID, value = {Dist.CLIENT}, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class CustomPortalsModClient {
 
+        // colored portals
         @SubscribeEvent
         public static void onBlockColors(RegisterColorHandlersEvent.Block event) {
             //
@@ -84,6 +88,16 @@ public class ModBlocks {
 
                 return 1908001;
             }, blockArray);
+        }
+
+        // translucent portals
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                DUMMY_PORTAL_BLOCKS.forEach(b -> {
+                    ItemBlockRenderTypes.setRenderLayer(b.get(), RenderType.translucent());
+                });
+            });
         }
     }
 }
