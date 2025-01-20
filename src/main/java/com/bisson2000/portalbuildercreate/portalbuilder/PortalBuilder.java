@@ -2,10 +2,13 @@ package com.bisson2000.portalbuildercreate.portalbuilder;
 
 import com.bisson2000.portalbuildercreate.block.ModBlocks;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
+import net.kyrptonaught.customportalapi.util.ColorUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.awt.*;
 
 public abstract class PortalBuilder {
 
@@ -57,7 +60,7 @@ public abstract class PortalBuilder {
 
                 // (Optional) Set the RGB color for the portal's tint
                 // Customize the portal's appearance with a specific color
-                .tintColor(45, 65, 101)
+                .tintColor(0, 0, 255)
 
                 // (Optional) Custom frame tester
                 // 1.21+ requires ResourceLocation.parse or similar methods instead of new ResourceLocation
@@ -89,6 +92,7 @@ public abstract class PortalBuilder {
                 .frameBlock(Blocks.DIAMOND_ORE)
                 .lightWithItem(Items.ENDER_EYE)
                 .customPortalBlock(ModBlocks.DUMMY_PORTAL_BLOCKS.get(1)) // bug bypass
+                .tintColor(255, 0, 0)
                 .returnDim(new ResourceLocation("the_nether"), false)
                 .destDimID(new ResourceLocation("the_end"))
                 .registerPostTPEvent(entity -> {
