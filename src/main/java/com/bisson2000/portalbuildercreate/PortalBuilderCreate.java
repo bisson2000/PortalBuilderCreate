@@ -1,5 +1,6 @@
 package com.bisson2000.portalbuildercreate;
 
+import com.bisson2000.portalbuildercreate.block.ModBlocks;
 import com.bisson2000.portalbuildercreate.portalbuilder.PortalBuilder;
 import com.bisson2000.portalbuildercreate.portalregister.PortalRegisterHelper;
 import com.mojang.logging.LogUtils;
@@ -35,6 +36,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.NewRegistryEvent;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
@@ -42,24 +44,33 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(PortalBuilderCreate.MODID)
+@Mod(PortalBuilderCreate.MOD_ID)
 public class PortalBuilderCreate
 {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "portalbuildercreate";
+    public static final String MOD_ID = "portalbuildercreate";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    /**
+     * There is a bug with customportalAPI where the same block is used with the portal frame.
+     * This causes issues with create when a new portal is created.
+     * THe workaround is to use a different portal block for every portal.
+     * */
+    public static int NUMBER_OF_PORTALS_ALLOWED = 100;
 
     public PortalBuilderCreate(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
+
+        ModBlocks.init(modEventBus);
+        //modEventBus.addListener(this::createRegistry);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
-
         PortalBuilder.buildPortals();
 
         event.enqueueWork(() -> {
@@ -75,7 +86,7 @@ public class PortalBuilderCreate
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent

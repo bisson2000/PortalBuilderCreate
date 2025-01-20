@@ -67,42 +67,40 @@ public class PortalRegisterHelper {
      *
      * */
     public static Pair<ServerLevel, BlockFace> standardPortalProvider(Pair<ServerLevel, BlockFace> inbound,
-                                                                      ResourceKey<Level> fromDimension, ResourceKey<Level> toDimension,
+                                                                      ResourceKey<Level> firstDimension, ResourceKey<Level> secondDimension,
                                                                       Function<ServerLevel, ITeleporter> customPortalForcer) {
-        ServerLevel level = (ServerLevel)inbound.getFirst();
-        ResourceKey<Level> resourcekey = level.dimension() == toDimension ? fromDimension : toDimension;
+        ServerLevel level = inbound.getFirst();
+        ResourceKey<Level> resourcekey = level.dimension() == secondDimension ? firstDimension : secondDimension;
         MinecraftServer minecraftserver = level.getServer();
         ServerLevel otherLevel = minecraftserver.getLevel(resourcekey);
-        if (otherLevel != null && minecraftserver.isNetherEnabled()) {
-            BlockFace inboundTrack = (BlockFace)inbound.getSecond();
-            BlockPos portalPos = inboundTrack.getConnectedPos();
-            BlockState portalState = level.getBlockState(portalPos);
-            ITeleporter teleporter = (ITeleporter)customPortalForcer.apply(otherLevel);
-            SuperGlueEntity probe = new SuperGlueEntity(level, new AABB(portalPos));
-            probe.setYRot(inboundTrack.getFace().toYRot());
-            probe.setPortalEntrancePos();
-            Objects.requireNonNull(probe);
-            PortalInfo portalinfo = teleporter.getPortalInfo(probe, otherLevel, probe::findDimensionEntryPoint);
-            if (portalinfo == null) {
-                return null;
-            } else {
-                BlockPos otherPortalPos = BlockPos.containing(portalinfo.pos);
-                BlockState otherPortalState = otherLevel.getBlockState(otherPortalPos);
-                if (otherPortalState.getBlock() != portalState.getBlock()) {
-                    return null;
-                } else {
-                    Direction targetDirection = inboundTrack.getFace();
-                    if (targetDirection.getAxis() == otherPortalState.getValue(BlockStateProperties.AXIS)) { // Only BlockStateProperties.AXIS changed
-                        targetDirection = targetDirection.getClockWise();
-                    }
 
-                    BlockPos otherPos = otherPortalPos.relative(targetDirection);
-                    return Pair.of(otherLevel, new BlockFace(otherPos, targetDirection.getOpposite()));
-                }
-            }
-        } else {
+        if (otherLevel == null || !minecraftserver.isNetherEnabled())
             return null;
-        }
+
+        BlockFace inboundTrack = inbound.getSecond();
+        BlockPos portalPos = inboundTrack.getConnectedPos();
+        BlockState portalState = level.getBlockState(portalPos);
+        ITeleporter teleporter = customPortalForcer.apply(otherLevel);
+
+        SuperGlueEntity probe = new SuperGlueEntity(level, new AABB(portalPos));
+        probe.setYRot(inboundTrack.getFace()
+                .toYRot());
+        probe.setPortalEntrancePos();
+
+        PortalInfo portalinfo = teleporter.getPortalInfo(probe, otherLevel, probe::findDimensionEntryPoint);
+        if (portalinfo == null)
+            return null;
+
+        BlockPos otherPortalPos = BlockPos.containing(portalinfo.pos);
+        BlockState otherPortalState = otherLevel.getBlockState(otherPortalPos);
+        if (otherPortalState.getBlock() != portalState.getBlock())
+            return null;
+
+        Direction targetDirection = inboundTrack.getFace();
+        if (targetDirection.getAxis() == otherPortalState.getValue(BlockStateProperties.AXIS))
+            targetDirection = targetDirection.getClockWise();
+        BlockPos otherPos = otherPortalPos.relative(targetDirection);
+        return Pair.of(otherLevel, new BlockFace(otherPos, targetDirection.getOpposite()));
 
     }
 }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cpapireforged:block/customportalblock_ns"
+    },
+    "axis=y": {
+      "model": "cpapireforged:block/customportalblock_flat"
+    },
+    "axis=z": {
+      "model": "cpapireforged:block/customportalblock_ew"
+    }
+  }
+}
