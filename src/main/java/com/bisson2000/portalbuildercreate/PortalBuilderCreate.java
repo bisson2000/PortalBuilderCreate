@@ -1,6 +1,7 @@
 package com.bisson2000.portalbuildercreate;
 
 import com.bisson2000.portalbuildercreate.block.ModBlocks;
+import com.bisson2000.portalbuildercreate.config.PortalBuilderCreateConfig;
 import com.bisson2000.portalbuildercreate.portalbuilder.PortalBuilder;
 import com.bisson2000.portalbuildercreate.portalregister.PortalRegisterHelper;
 import com.mojang.logging.LogUtils;
@@ -34,12 +35,16 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.NewRegistryEvent;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -50,7 +55,9 @@ public class PortalBuilderCreate
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "portalbuildercreate";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
+
+    private static final String COMMON_CONFIG_NAME = MOD_ID + "-common.json";
 
     /**
      * There is a bug with customportalAPI where the same block is used with the portal frame.
@@ -64,7 +71,13 @@ public class PortalBuilderCreate
         IEventBus modEventBus = context.getModEventBus();
 
         ModBlocks.init(modEventBus);
+
+        //context.registerConfig(ModConfig.Type.COMMON, PortalBuilderCreateConfig.SPEC);
+
+        Path configPath = FMLPaths.CONFIGDIR.get().resolve(COMMON_CONFIG_NAME);
+        PortalBuilderCreateConfig.init(configPath.toFile());
         //modEventBus.addListener(this::createRegistry);
+        //PortalBuilderCreateConfig.init(COMMON_CONFIG_NAME);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
