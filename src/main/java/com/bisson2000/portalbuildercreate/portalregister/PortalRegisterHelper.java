@@ -1,9 +1,11 @@
-package com.bisson2000.portalbuildercreate.registerportals;
+package com.bisson2000.portalbuildercreate.portalregister;
 
 import com.bisson2000.portalbuildercreate.PortalBuilderCreate;
 import com.simibubi.create.content.contraptions.glue.SuperGlueEntity;
+import com.simibubi.create.content.trains.track.AllPortalTracks;
 import com.simibubi.create.foundation.utility.BlockFace;
 import com.simibubi.create.foundation.utility.Pair;
+import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.kyrptonaught.customportalapi.util.CustomPortalHelper;
 import net.kyrptonaught.customportalapi.util.CustomTeleporter;
 import net.kyrptonaught.customportalapi.util.PortalLink;
@@ -27,14 +29,24 @@ import java.util.function.Function;
 
 public class PortalRegisterHelper {
 
-    private static Pair<ServerLevel, BlockFace> createPortalTrackProvider(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
-        ResourceKey<Level> trainDepot = ResourceKey.create(Registries.DIMENSION, portalLink.dimID);
-        return PortalBuilderCreate.standardPortalProvider(inbound, Level.OVERWORLD, trainDepot, (sl) -> PortalBuilderCreate.wrapCustomTeleporter(inbound, portalLink));
+    public static void RegisterAllPortals() {
+        CustomPortalApiRegistry.getAllPortalLinks().forEach(portalLink -> {
+            AllPortalTracks.registerIntegration(portalLink.getPortalBlock(), inbound -> {
+                return createPortalTrackProvider(inbound, portalLink);
+            });
+        });
     }
 
-    public static ITeleporter wrapCustomTeleporter(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
-        return new ITeleporter() {
+    private static Pair<ServerLevel, BlockFace> createPortalTrackProvider(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
+        ResourceKey<Level> fromDimension = ResourceKey.create(Registries.DIMENSION, portalLink.returnDimID);
+        ResourceKey<Level> toDimension = ResourceKey.create(Registries.DIMENSION, portalLink.dimID);
+        return standardPortalProvider(inbound, fromDimension, toDimension, serverLevel -> {
+            return createPortalForcer(inbound, portalLink);
+        });
+    }
 
+    public static ITeleporter createPortalForcer(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
+        return new ITeleporter() {
             @Override
             public @Nullable PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
 
@@ -49,11 +61,16 @@ public class PortalRegisterHelper {
         };
     }
 
+    /**
+     * Copied from AllPortalTracks:standardPortalProvider, and changed 1 line
+     * See <a href="https://github.com/Creators-of-Create/Create/blob/d39f89983a6c36dcacda6635c2094c826703ed49/src/main/java/com/simibubi/create/content/trains/track/AllPortalTracks.java#L88">Github</a>
+     *
+     * */
     public static Pair<ServerLevel, BlockFace> standardPortalProvider(Pair<ServerLevel, BlockFace> inbound,
-                                                                      ResourceKey<Level> firstDimension, ResourceKey<Level> secondDimension,
+                                                                      ResourceKey<Level> fromDimension, ResourceKey<Level> toDimension,
                                                                       Function<ServerLevel, ITeleporter> customPortalForcer) {
         ServerLevel level = (ServerLevel)inbound.getFirst();
-        ResourceKey<Level> resourcekey = level.dimension() == secondDimension ? firstDimension : secondDimension;
+        ResourceKey<Level> resourcekey = level.dimension() == toDimension ? fromDimension : toDimension;
         MinecraftServer minecraftserver = level.getServer();
         ServerLevel otherLevel = minecraftserver.getLevel(resourcekey);
         if (otherLevel != null && minecraftserver.isNetherEnabled()) {
