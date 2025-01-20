@@ -1,26 +1,99 @@
-[20janv.2025 08:37:24.775] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\Paul-André\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.10, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, portalbuildercreate, --all, --output, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\generated\resources, --existing, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\main\resources]
-[20janv.2025 08:37:24.781] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.13 by Amazon.com Inc.; OS Windows 10 arch amd64 version 10.0
-[20janv.2025 08:37:24.960] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
-[20janv.2025 08:37:25.053] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Paul-André/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[20janv.2025 08:37:25.480] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.10\7a15037366722893d76a3d0b2e9d1fd13a63a22d\javafmllanguage-1.20.1-47.3.10.jar is missing mods.toml file
-[20janv.2025 08:37:25.483] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.10\e67d9b3451d64ccc812cbbd33c066bd3ebbf2167\lowcodelanguage-1.20.1-47.3.10.jar is missing mods.toml file
-[20janv.2025 08:37:25.486] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.10\2023f9726a509c5ba5a925cac934944066093de8\mclanguage-1.20.1-47.3.10.jar is missing mods.toml file
-[20janv.2025 08:37:25.490] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.10\523aa0cd9a773b2b56268d8689b2fb5c1f072941\fmlcore-1.20.1-47.3.10.jar is missing mods.toml file
-[20janv.2025 08:37:25.635] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[20janv.2025 08:37:27.872] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[20janv.2025 08:37:27.883] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\Paul-André\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, portalbuildercreate, --all, --output, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\generated\resources, --existing, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\main\resources]
-[20janv.2025 08:37:28.362] [main/INFO] [mixin/]: Remapping refMap cpapireforged.refmap.json using D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate/build/createSrgToMcp/output.srg
-[20janv.2025 08:37:28.365] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate/build/createSrgToMcp/output.srg
-[20janv.2025 08:37:28.367] [main/INFO] [mixin/]: Remapping refMap create.refmap.json using D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate/build/createSrgToMcp/output.srg
-[20janv.2025 08:37:29.355] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [portalbuildercreate]
-[20janv.2025 08:37:34.710] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.10, for MC 1.20.1 with MCP 20230612.114412
-[20janv.2025 08:37:34.711] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.3.10 Initialized
-[20janv.2025 08:37:34.965] [modloading-worker-0/INFO] [com.jozufozu.flywheel.backend.Backend/]: No shaders mod detected.
-[20janv.2025 08:37:35.118] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
-[20janv.2025 08:37:35.131] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 10.17 ms
-[20janv.2025 08:37:38.474] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Paul-André/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.10_mapped_official_1.20.1/forge-1.20.1-47.3.10_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[20janv.2025 08:37:38.474] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Paul-André/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.10_mapped_official_1.20.1/forge-1.20.1-47.3.10_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[20janv.2025 08:37:38.869] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: portalbuildercreate
-[20janv.2025 08:37:39.044] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: portalbuildercreate finished after 174 ms
-[20janv.2025 08:37:39.044] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 175 ms
-[20janv.2025 08:37:39.051] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 100, old count: 100, new count: 101, removed stale: 0, written: 100
+[20janv.2025 17:14:00.291] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\Paul-André\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.10, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, portalbuildercreate, --all, --output, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\generated\resources, --existing, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\main\resources, --mixin.config, portalbuildercreate.mixin.json]
+[20janv.2025 17:14:00.298] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.13 by Amazon.com Inc.; OS Windows 10 arch amd64 version 10.0
+[20janv.2025 17:14:00.455] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[20janv.2025 17:14:00.535] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Paul-André/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23132!/ Service=ModLauncher Env=CLIENT
+[20janv.2025 17:14:00.880] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.10\7a15037366722893d76a3d0b2e9d1fd13a63a22d\javafmllanguage-1.20.1-47.3.10.jar is missing mods.toml file
+[20janv.2025 17:14:00.883] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.10\e67d9b3451d64ccc812cbbd33c066bd3ebbf2167\lowcodelanguage-1.20.1-47.3.10.jar is missing mods.toml file
+[20janv.2025 17:14:00.886] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.10\2023f9726a509c5ba5a925cac934944066093de8\mclanguage-1.20.1-47.3.10.jar is missing mods.toml file
+[20janv.2025 17:14:00.889] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Paul-André\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.10\523aa0cd9a773b2b56268d8689b2fb5c1f072941\fmlcore-1.20.1-47.3.10.jar is missing mods.toml file
+[20janv.2025 17:14:01.039] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[20janv.2025 17:14:03.098] [main/ERROR] [mixin/]: Mixin config portalbuildercreate.mixin.json does not specify "minVersion" property
+[20janv.2025 17:14:03.103] [main/WARN] [mixin/]: Compatibility level JAVA_17 specified by cpapireforged.mixins.json is higher than the maximum level supported by this version of mixin (JAVA_13).
+[20janv.2025 17:14:03.103] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[20janv.2025 17:14:03.112] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\Paul-André\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, portalbuildercreate, --all, --output, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\generated\resources, --existing, D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate\src\main\resources]
+[20janv.2025 17:14:03.206] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
+[20janv.2025 17:14:03.208] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
+[20janv.2025 17:14:03.234] [main/INFO] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
+[20janv.2025 17:14:03.236] [main/INFO] [mixin/]: Selecting config portalbuildercreate.mixin.json
+[20janv.2025 17:14:03.240] [main/WARN] [mixin/]: Reference map 'portalbuildercreate.mixin-refmap.json' for portalbuildercreate.mixin.json could not be read. If this is a development environment you can ignore this message
+[20janv.2025 17:14:03.241] [main/INFO] [mixin/]: Selecting config cpapireforged.mixins.json
+[20janv.2025 17:14:03.513] [main/INFO] [mixin/]: Remapping refMap cpapireforged.refmap.json using D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate/build/createSrgToMcp/output.srg
+[20janv.2025 17:14:03.513] [main/INFO] [mixin/]: Selecting config flywheel.mixins.json
+[20janv.2025 17:14:03.515] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate/build/createSrgToMcp/output.srg
+[20janv.2025 17:14:03.515] [main/INFO] [mixin/]: Selecting config create.mixins.json
+[20janv.2025 17:14:03.517] [main/INFO] [mixin/]: Remapping refMap create.refmap.json using D:\Users\Paul-André\Documents\exercicesProgrammation\Minecraft\MinecraftModding\PortalBuilderCreate/build/createSrgToMcp/output.srg
+[20janv.2025 17:14:03.517] [main/INFO] [mixin/]: Preparing portalbuildercreate.mixin.json (2)
+[20janv.2025 17:14:03.579] [main/INFO] [mixin/]: Preparing cpapireforged.mixins.json (11)
+[20janv.2025 17:14:03.715] [main/INFO] [mixin/]: Preparing flywheel.mixins.json (23)
+[20janv.2025 17:14:03.979] [main/INFO] [mixin/]: Preparing create.mixins.json (36)
+[20janv.2025 17:14:04.109] [main/INFO] [mixin/]: Prepared 71 mixins in 0,873 sec (12,3ms avg) (0ms load, 0ms transform, 0ms plugin)
+[20janv.2025 17:14:04.448] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [portalbuildercreate]
+[20janv.2025 17:14:04.590] [main/INFO] [mixin/]: Mixing EntityMixin from create.mixins.json into net.minecraft.world.entity.Entity
+[20janv.2025 17:14:04.603] [main/INFO] [mixin/]: Mixing EntityMixin from cpapireforged.mixins.json into net.minecraft.world.entity.Entity
+[20janv.2025 17:14:04.616] [main/INFO] [mixin/]: Mixing ContraptionDriverInteractMixin from create.mixins.json into net.minecraft.world.entity.Entity
+[20janv.2025 17:14:04.618] [main/INFO] [mixin/]: Mixing accessor.EntityAccessor from create.mixins.json into net.minecraft.world.entity.Entity
+[20janv.2025 17:14:04.641] [main/INFO] [mixin/]: Mixing client.EntityContraptionInteractionMixin from create.mixins.json into net.minecraft.world.entity.Entity
+[20janv.2025 17:14:04.642] [main/INFO] [mixin/]: Renaming synthetic method lambda$create$onSpawnSprintParticle$4(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;Lcom/simibubi/create/content/contraptions/Contraption;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)V to mdf6a418$lambda$create$onSpawnSprintParticle$4$0 in create.mixins.json:client.EntityContraptionInteractionMixin
+[20janv.2025 17:14:04.643] [main/INFO] [mixin/]: Renaming synthetic method lambda$create$onMove$3(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;Lcom/simibubi/create/content/contraptions/AbstractContraptionEntity;)Z to mdf6a418$lambda$create$onMove$3$1 in create.mixins.json:client.EntityContraptionInteractionMixin
+[20janv.2025 17:14:04.644] [main/INFO] [mixin/]: Renaming synthetic method lambda$create$contraptionStepSounds$2(Lorg/apache/commons/lang3/mutable/MutableBoolean;Lcom/simibubi/create/content/contraptions/Contraption;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)V to mdf6a418$lambda$create$contraptionStepSounds$2$2 in create.mixins.json:client.EntityContraptionInteractionMixin
+[20janv.2025 17:14:04.644] [main/INFO] [mixin/]: Renaming synthetic method lambda$create$forCollision$1(Lnet/minecraft/world/phys/Vec3;Lorg/apache/logging/log4j/util/TriConsumer;Lcom/simibubi/create/content/contraptions/AbstractContraptionEntity;)V to mdf6a418$lambda$create$forCollision$1$3 in create.mixins.json:client.EntityContraptionInteractionMixin
+[20janv.2025 17:14:04.644] [main/INFO] [mixin/]: Renaming synthetic method lambda$create$getIntersectionContraptionsStream$0(Lcom/simibubi/create/content/contraptions/AbstractContraptionEntity;)Z to mdf6a418$lambda$create$getIntersectionContraptionsStream$0$4 in create.mixins.json:client.EntityContraptionInteractionMixin
+[20janv.2025 17:14:04.924] [main/INFO] [mixin/]: Mixing LivingEntityMixin from cpapireforged.mixins.json into net.minecraft.world.entity.LivingEntity
+[20janv.2025 17:14:04.925] [main/INFO] [mixin/]: Mixing CustomItemUseEffectsMixin from create.mixins.json into net.minecraft.world.entity.LivingEntity
+[20janv.2025 17:14:04.950] [main/INFO] [mixin/]: Mixing LavaSwimmingMixin from create.mixins.json into net.minecraft.world.entity.LivingEntity
+[20janv.2025 17:14:04.960] [main/INFO] [mixin/]: Mixing accessor.LivingEntityAccessor from create.mixins.json into net.minecraft.world.entity.LivingEntity
+[20janv.2025 17:14:05.050] [main/INFO] [mixin/]: Mixing accessor.ServerLevelAccessor from create.mixins.json into net.minecraft.server.level.ServerLevel
+[20janv.2025 17:14:05.078] [main/INFO] [mixin/]: Mixing PlayerMixin from cpapireforged.mixins.json into net.minecraft.world.entity.player.Player
+[20janv.2025 17:14:05.174] [main/INFO] [mixin/]: Mixing EntityTypeMixin from flywheel.mixins.json into net.minecraft.world.entity.EntityType
+[20janv.2025 17:14:05.196] [main/INFO] [mixin/]: Mixing BlockEntityTypeMixin from flywheel.mixins.json into net.minecraft.world.level.block.entity.BlockEntityType
+[20janv.2025 17:14:05.289] [main/INFO] [mixin/]: Mixing portalLighters.AbstractFireMixin from cpapireforged.mixins.json into net.minecraft.world.level.block.BaseFireBlock
+[20janv.2025 17:14:05.503] [main/INFO] [mixin/]: Mixing portalLighters.FluidBlockPlacedMixin from cpapireforged.mixins.json into net.minecraft.world.level.block.LiquidBlock
+[20janv.2025 17:14:05.530] [main/INFO] [mixin/]: Mixing accessor.DispenserBlockAccessor from create.mixins.json into net.minecraft.world.level.block.DispenserBlock
+[20janv.2025 17:14:05.797] [main/INFO] [mixin/]: Mixing WaterWheelFluidSpreadMixin from create.mixins.json into net.minecraft.world.level.material.FlowingFluid
+[20janv.2025 17:14:05.917] [main/INFO] [mixin/]: Mixing accessor.FallingBlockEntityAccessor from create.mixins.json into net.minecraft.world.entity.item.FallingBlockEntity
+[20janv.2025 17:14:05.917] [main/INFO] [mixin/]: Renaming @Invoker method create$callInit(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/entity/item/FallingBlockEntity; to create$callInit_$md$f6a418$0 in create.mixins.json:accessor.FallingBlockEntityAccessor
+[20janv.2025 17:14:05.928] [main/INFO] [mixin/]: Mixing instancemanage.InstanceRemoveMixin from flywheel.mixins.json into net.minecraft.world.level.block.entity.BlockEntity
+[20janv.2025 17:14:07.114] [main/INFO] [mixin/]: Mixing BlockItemMixin from create.mixins.json into net.minecraft.world.item.BlockItem
+[20janv.2025 17:14:08.260] [main/INFO] [mixin/]: Mixing accessor.UseOnContextAccessor from create.mixins.json into net.minecraft.world.item.context.UseOnContext
+[20janv.2025 17:14:08.402] [main/INFO] [mixin/]: Mixing portalLighters.PotionEntityMixin from cpapireforged.mixins.json into net.minecraft.world.entity.projectile.ThrownPotion
+[20janv.2025 17:14:08.638] [main/INFO] [mixin/]: Mixing ServerPlayerMixin from cpapireforged.mixins.json into net.minecraft.server.level.ServerPlayer
+[20janv.2025 17:14:08.701] [main/INFO] [mixin/]: Mixing instancemanage.InstanceAddMixin from flywheel.mixins.json into net.minecraft.world.level.chunk.LevelChunk
+[20janv.2025 17:14:09.202] [main/INFO] [mixin/]: Mixing accessor.AbstractProjectileDispenseBehaviorAccessor from create.mixins.json into net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior
+[20janv.2025 17:14:10.325] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.10, for MC 1.20.1 with MCP 20230612.114412
+[20janv.2025 17:14:10.327] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.3.10 Initialized
+[20janv.2025 17:14:10.354] [modloading-worker-0/INFO] [mixin/]: Mixing ClientLevelMixin from flywheel.mixins.json into net.minecraft.client.multiplayer.ClientLevel
+[20janv.2025 17:14:10.382] [modloading-worker-0/INFO] [mixin/]: Mixing PausedPartialTickAccessor from flywheel.mixins.json into net.minecraft.client.Minecraft
+[20janv.2025 17:14:10.389] [modloading-worker-0/INFO] [mixin/]: Mixing client.WindowResizeMixin from create.mixins.json into net.minecraft.client.Minecraft
+[20janv.2025 17:14:10.435] [modloading-worker-0/INFO] [mixin/]: Mixing accessor.ParticleEngineAccessor from create.mixins.json into net.minecraft.client.particle.ParticleEngine
+[20janv.2025 17:14:10.477] [modloading-worker-0/INFO] [mixin/]: Mixing client.ClientPlayerMixin from cpapireforged.mixins.json into net.minecraft.client.player.LocalPlayer
+[20janv.2025 17:14:10.503] [modloading-worker-0/INFO] [mixin/]: Mixing client.HeavyBootsOnPlayerMixin from create.mixins.json into net.minecraft.client.player.LocalPlayer
+[20janv.2025 17:14:10.548] [modloading-worker-0/INFO] [mixin/]: Mixing CustomInGameHudMixin from portalbuildercreate.mixin.json into net.minecraft.client.gui.Gui
+[20janv.2025 17:14:10.548] [modloading-worker-0/WARN] [mixin/]: portalbuildercreate.mixin.json:CustomInGameHudMixin: Class version 61 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
+[20janv.2025 17:14:10.549] [modloading-worker-0/INFO] [mixin/]: Mixing client.InGameHudMixin from cpapireforged.mixins.json into net.minecraft.client.gui.Gui
+[20janv.2025 17:14:10.642] [modloading-worker-0/INFO] [com.jozufozu.flywheel.backend.Backend/]: No shaders mod detected.
+[20janv.2025 17:14:10.771] [modloading-worker-0/INFO] [mixin/]: Mixing CameraMixin from flywheel.mixins.json into net.minecraft.client.Camera
+[20janv.2025 17:14:10.772] [modloading-worker-0/INFO] [mixin/]: Mixing client.CameraMixin from create.mixins.json into net.minecraft.client.Camera
+[20janv.2025 17:14:10.813] [modloading-worker-0/INFO] [mixin/]: Mixing fix.FixNormalScalingMixin from flywheel.mixins.json into com.mojang.blaze3d.vertex.PoseStack
+[20janv.2025 17:14:10.814] [modloading-worker-0/INFO] [mixin/]: Mixing matrix.PoseStackMixin from flywheel.mixins.json into com.mojang.blaze3d.vertex.PoseStack
+[20janv.2025 17:14:10.858] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[20janv.2025 17:14:10.874] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 11.04 ms
+[20janv.2025 17:14:10.892] [modloading-worker-0/INFO] [mixin/]: Mixing FrustumMixin from flywheel.mixins.json into net.minecraft.client.renderer.culling.Frustum
+[20janv.2025 17:14:10.912] [modloading-worker-0/INFO] [mixin/]: Mixing RenderTypeMixin from flywheel.mixins.json into net.minecraft.client.renderer.RenderType
+[20janv.2025 17:14:10.943] [modloading-worker-0/INFO] [mixin/]: Mixing client.WorldRendererMixin from cpapireforged.mixins.json into net.minecraft.client.renderer.LevelRenderer
+[20janv.2025 17:14:10.944] [modloading-worker-0/INFO] [mixin/]: Mixing LevelRendererAccessor from flywheel.mixins.json into net.minecraft.client.renderer.LevelRenderer
+[20janv.2025 17:14:10.949] [modloading-worker-0/INFO] [mixin/]: Mixing fix.FixFabulousDepthMixin from flywheel.mixins.json into net.minecraft.client.renderer.LevelRenderer
+[20janv.2025 17:14:10.949] [modloading-worker-0/INFO] [mixin/]: Mixing instancemanage.InstanceUpdateMixin from flywheel.mixins.json into net.minecraft.client.renderer.LevelRenderer
+[20janv.2025 17:14:10.950] [modloading-worker-0/INFO] [mixin/]: Mixing client.LevelRendererMixin from create.mixins.json into net.minecraft.client.renderer.LevelRenderer
+[20janv.2025 17:14:10.950] [modloading-worker-0/INFO] [mixin/]: Renaming synthetic method lambda$create$onDestroyBlockProgress$0(J)Ljava/util/SortedSet; to mdf6a418$lambda$create$onDestroyBlockProgress$0$0 in create.mixins.json:client.LevelRendererMixin
+[20janv.2025 17:14:10.956] [modloading-worker-0/INFO] [mixin/]: Mixing LevelRendererMixin from flywheel.mixins.json into net.minecraft.client.renderer.LevelRenderer
+[20janv.2025 17:14:11.129] [modloading-worker-0/INFO] [mixin/]: Mixing accessor.GameRendererAccessor from create.mixins.json into net.minecraft.client.renderer.GameRenderer
+[20janv.2025 17:14:11.134] [modloading-worker-0/INFO] [mixin/]: Mixing client.GameRendererMixin from create.mixins.json into net.minecraft.client.renderer.GameRenderer
+[20janv.2025 17:14:12.759] [modloading-worker-0/INFO] [mixin/]: Mixing accessor.FontAccessor from create.mixins.json into net.minecraft.client.gui.Font
+[20janv.2025 17:14:13.775] [main/INFO] [mixin/]: Mixing accessor.AgeableListModelAccessor from create.mixins.json into net.minecraft.client.model.AgeableListModel
+[20janv.2025 17:14:14.156] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Users/Paul-André/Documents/exercicesProgrammation/Minecraft/MinecraftModding/PortalBuilderCreate/build/fg_cache/net/minecraftforge/forge/1.20.1-47.3.10_mapped_official_1.20.1/forge-1.20.1-47.3.10_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[20janv.2025 17:14:14.157] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Users/Paul-André/Documents/exercicesProgrammation/Minecraft/MinecraftModding/PortalBuilderCreate/build/fg_cache/net/minecraftforge/forge/1.20.1-47.3.10_mapped_official_1.20.1/forge-1.20.1-47.3.10_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[20janv.2025 17:14:14.157] [Worker-Main-1/INFO] [mixin/]: Mixing MapItemSavedDataMixin from create.mixins.json into net.minecraft.world.level.saveddata.maps.MapItemSavedData
+[20janv.2025 17:14:14.619] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: portalbuildercreate
+[20janv.2025 17:14:14.780] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: portalbuildercreate finished after 159 ms
+[20janv.2025 17:14:14.780] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 160 ms
+[20janv.2025 17:14:14.812] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 200, old count: 100, new count: 101, removed stale: 100, written: 100

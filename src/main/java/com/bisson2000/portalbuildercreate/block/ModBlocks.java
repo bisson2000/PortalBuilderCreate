@@ -43,15 +43,16 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, PortalBuilderCreate.MOD_ID);
 
-    private static int getId() {
-        return id++;
+    private static String getId() {
+        String res = "portalblock" + id;
+        id++;
+        return res;
     }
 
     public static final List<RegistryObject<CustomPortalBlock>> DUMMY_PORTAL_BLOCKS = new ArrayList<>();
 
     private static RegistryObject<CustomPortalBlock> registerDummyBlock() {
-        String name = Integer.toString(getId());
-        return registerBlock(name, () -> new CustomPortalBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_PORTAL)
+        return registerBlock(getId(), () -> new CustomPortalBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_PORTAL)
                 .strength(-1.0F)
                 .noCollission()
                 .sound(SoundType.GLASS)
