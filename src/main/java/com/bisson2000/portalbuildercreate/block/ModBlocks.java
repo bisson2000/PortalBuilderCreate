@@ -4,18 +4,24 @@ import com.bisson2000.portalbuildercreate.PortalBuilderCreate;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.kyrptonaught.customportalapi.CustomPortalBlock;
 import net.kyrptonaught.customportalapi.CustomPortalsMod;
+import net.kyrptonaught.customportalapi.interfaces.EntityInCustomPortal;
 import net.kyrptonaught.customportalapi.mixin.client.ChunkRendererRegionAccessor;
 import net.kyrptonaught.customportalapi.util.CustomPortalHelper;
 import net.kyrptonaught.customportalapi.util.PortalLink;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.chunk.RenderChunkRegion;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,6 +31,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +52,26 @@ public class ModBlocks {
     private static RegistryObject<CustomPortalBlock> registerDummyBlock() {
         String name = Integer.toString(getId());
         return registerBlock(name, () -> new CustomPortalBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_PORTAL)
-                .noCollission()
                 .strength(-1.0F)
+                .noCollission()
                 .sound(SoundType.GLASS)
                 .lightLevel(state -> 11)
-        ));
+        ) {
+            // Need to override default behavior because it does not work.
+            // This is also a bug
+            @Override
+            public void entityInside(@NotNull BlockState state, @NotNull Level world, BlockPos pos, @NotNull Entity entity) {
+                super.entityInside(state, world, pos, entity);
+                EntityInCustomPortal entityInPortal = (EntityInCustomPortal)entity;
+                if (entity.canChangeDimensions() && entity instanceof LocalPlayer localPlayer) {
+                    if (entity.isOnPortalCooldown()) {
+                        entity.setPortalCooldown();
+                    } else {
+                        localPlayer.isInsidePortal = true;//!entityInPortal.didTeleport();
+                    }
+                }
+            }
+        });
     }
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
