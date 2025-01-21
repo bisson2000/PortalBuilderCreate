@@ -24,7 +24,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 import java.util.function.Function;
 
 public class PortalRegisterHelper {
