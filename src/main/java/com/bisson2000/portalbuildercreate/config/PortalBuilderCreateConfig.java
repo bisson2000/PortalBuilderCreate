@@ -91,7 +91,8 @@ public class PortalBuilderCreateConfig {
                 // Get a default map of blocks. You could just use a blank map, however.
                 // Convert the map to JSON format. There is a built in (de)serializer for it already.
                 String json = DEFAULT_INSTRUCTIONS;
-                json += GSON.toJson(DEFAULT_LIST, CUSTOM_PORTAL_LIST_TYPE);
+                //json += GSON.toJson(DEFAULT_LIST, CUSTOM_PORTAL_LIST_TYPE);
+                json += GSON.toJson(new ArrayList<>(), CUSTOM_PORTAL_LIST_TYPE);
                 FileWriter writer = new FileWriter(jsonConfig);
                 // Write to the file you passed
                 writer.write(json);
