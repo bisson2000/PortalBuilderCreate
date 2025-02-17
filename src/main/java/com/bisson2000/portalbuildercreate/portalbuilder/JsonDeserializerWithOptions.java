@@ -21,10 +21,11 @@ public class JsonDeserializerWithOptions<T> implements JsonDeserializer<T>
     public @interface FieldRequired {}
 
     @Override
-    public T deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
+    public T deserialize(JsonElement json, Type type, JsonDeserializationContext jdc)
             throws JsonParseException {
+
         // Parsing object as usual.
-        T pojo = new Gson().fromJson(je, type);
+        T pojo = new Gson().fromJson(json, type);
 
         // Getting all fields of the class and checking if all required ones were provided.
         checkRequiredFields(pojo.getClass().getDeclaredFields(), pojo);

@@ -35,11 +35,6 @@ public abstract class PortalBuilder {
     private static void buildIndividualPortal(int customPortalIndex) {
         CustomPortal customPortal = PortalBuilderCreateConfig.CUSTOM_PORTAL_LIST.get(customPortalIndex);
 
-        if (!customPortal.activationFlag) {
-            PortalBuilderCreate.LOGGER.warn("A portal was left inactive! Was this intentional? Portal from {} to {}", customPortal.fromDim, customPortal.toDim);
-            return;
-        }
-
         // Init builder
         CustomPortalBuilder customPortalBuilder = CustomPortalBuilder.beginPortal();
 
@@ -69,7 +64,7 @@ public abstract class PortalBuilder {
         customPortalBuilder.tintColor(customPortal.r, customPortal.g, customPortal.b);
 
         // onlyIgnitableInReturnDim
-        if (customPortal.onlyIgnitInDims) {
+        if (customPortal.onlyIgniteInDims) {
             customPortalBuilder.onlyLightInOverworld();
         }
 
@@ -84,11 +79,13 @@ public abstract class PortalBuilder {
         }
 
         // credits
-        customPortalBuilder.registerPostTPEvent((entity) -> {
-            if (entity instanceof ServerPlayer serverPlayer) {
-                ModMessages.sendToClient(new ShowCreditsS2C(), serverPlayer);
-            }
-        });
+        if (customPortal.showCredits) {
+            customPortalBuilder.registerPostTPEvent((entity) -> {
+                if (entity instanceof ServerPlayer serverPlayer) {
+                    ModMessages.sendToClient(new ShowCreditsS2C(), serverPlayer);
+                }
+            });
+        }
 
         // Register builder
         customPortalBuilder.registerPortal();

@@ -27,7 +27,61 @@ public class PortalBuilderCreateConfig {
             new CustomPortal("minecraft:diamond_block", "minecraft:lava", "minecraft:overworld", "minecraft:the_nether", Color.red),
             new CustomPortal("minecraft:diamond_ore", "minecraft:ender_eye", "minecraft:the_nether", "minecraft:the_end", Color.blue)
     ));
+    private static String DEFAULT_INSTRUCTIONS = "/*\n" +
+            " * Configuration file for " + PortalBuilderCreate.MOD_ID + "\n" +
+            " * You can leave this comment in the file" + "\n" +
+            " * " + "\n" +
+            " * Parameters explained:" + "\n" +
+            " * @Required: frameBlock \t\t\t The block used to create the portal frame. Must be in format modid:block_name. E.g.: minecraft:diamond_block" + "\n" +
+            " * @Required: igniter \t\t\t\t The item/block/fluid used to ignite the Portal. Must be in format modid:block_name. E.g.: minecraft:fire" + "\n" +
+            " * @Required: fromDim \t\t\t\t The dimension from which the portal starts. Must be in format modid:dim_name. E.g.: minecraft:overworld" + "\n" +
+            " * @Required: toDim \t\t\t\t The dimension from which the portal ends. Must be in format modid:dim_name. E.g.: minecraft:the_nether" + "\n" +
+            " * @Required: rgb \t\t\t\t\t The color of the portal. Red, Green and Blue values must be between 0 and 255" + "\n" +
+            " * @Optional: onlyIgniteInFromDim \t True by default. True if a portal can only be ignited in one of its targeted dim. " +
+                "For example, if the value is set to false, then a portal that links minecraft:the_end and minecraft:the_nether can be activated in minecraft:overworld" + "\n" +
+            " * @Optional: isFlatPortal \t\t\t False by default. False means the portal is vertical, like the nether portal. True means the portal is horizontal, like the end portal" + "\n" +
+            " * @Optional: forceSize \t\t\t False by default. If the portal is required to have a specific size and match the width and height specified" + "\n" +
+            " * @Optional: showCredits \t\t\t False by default. If the player will view credits when traversing the portal" + "\n" +
+            " * " + "\n" +
+            " * The portals are specified as objects, in a list" + "\n" +
+            " * Example how the json should look like" + "\n" +
+            " * [" + "\n" +
+            " *     { " + "\n" +
+            " *         \"frameBlock\": \"minecraft:diamond_block\", " + "\n" +
+            " *         \"igniter\": \"minecraft:lava\", " + "\n" +
+            " *         \"fromDim\": \"minecraft:overworld\", " + "\n" +
+            " *         \"toDim\": \"minecraft:the_nether\", " + "\n" +
+            " *         \"r\": 255, " + "\n" +
+            " *         \"g\": 0, " + "\n" +
+            " *         \"b\": 0, " + "\n" +
+            " *         \"onlyIgniteInDims\": true, " + "\n" +
+            " *         \"isFlatPortal\": false, " + "\n" +
+            " *         \"forceSize\": false, " + "\n" +
+            " *         \"forcedSizeWidth\": 0, " + "\n" +
+            " *         \"forcedSizeHeight\": 0, " + "\n" +
+            " *         \"showCredits\": true " + "\n" +
+            " *     }, " + "\n" +
+            " *     { " + "\n" +
+            " *         \"frameBlock\": \"minecraft:diamond_ore\", " + "\n" +
+            " *         \"igniter\": \"minecraft:ender_eye\", " + "\n" +
+            " *         \"fromDim\": \"minecraft:the_nether\", " + "\n" +
+            " *         \"toDim\": \"minecraft:the_end\", " + "\n" +
+            " *         \"r\": 0, " + "\n" +
+            " *         \"g\": 0, " + "\n" +
+            " *         \"b\": 255, " + "\n" +
+            " *         \"onlyIgniteInDims\": true, " + "\n" +
+            " *         \"isFlatPortal\": false, " + "\n" +
+            " *         \"forceSize\": true, " + "\n" +
+            " *         \"forcedSizeWidth\": 4, " + "\n" +
+            " *         \"forcedSizeHeight\": 5, " + "\n" +
+            " *         \"showCredits\": false " + "\n" +
+            " *     } " + "\n" +
+            " * ] " + "\n" +
+            " */\n";
 
+    /**
+     *
+     * */
     public static List<CustomPortal> CUSTOM_PORTAL_LIST;
 
     public static void init(File jsonConfig) {
@@ -35,9 +89,9 @@ public class PortalBuilderCreateConfig {
             // Create the config if it doesn't already exist.
             if (!jsonConfig.exists() && jsonConfig.createNewFile()) {
                 // Get a default map of blocks. You could just use a blank map, however.
-                List<CustomPortal> defaultList = DEFAULT_LIST;
                 // Convert the map to JSON format. There is a built in (de)serializer for it already.
-                String json = GSON.toJson(defaultList, CUSTOM_PORTAL_LIST_TYPE);
+                String json = DEFAULT_INSTRUCTIONS;
+                json += GSON.toJson(DEFAULT_LIST, CUSTOM_PORTAL_LIST_TYPE);
                 FileWriter writer = new FileWriter(jsonConfig);
                 // Write to the file you passed
                 writer.write(json);
