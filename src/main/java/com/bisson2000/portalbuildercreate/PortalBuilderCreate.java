@@ -2,6 +2,7 @@ package com.bisson2000.portalbuildercreate;
 
 import com.bisson2000.portalbuildercreate.block.ModBlocks;
 import com.bisson2000.portalbuildercreate.config.PortalBuilderCreateConfig;
+import com.bisson2000.portalbuildercreate.networking.ModMessages;
 import com.bisson2000.portalbuildercreate.portalbuilder.PortalBuilder;
 import com.bisson2000.portalbuildercreate.portalregister.PortalRegisterHelper;
 import com.mojang.logging.LogUtils;
@@ -61,6 +62,7 @@ public class PortalBuilderCreate
         PortalBuilder.buildPortals();
 
         event.enqueueWork(() -> {
+            ModMessages.register();
             PortalRegisterHelper.RegisterAllPortals();
         });
     }

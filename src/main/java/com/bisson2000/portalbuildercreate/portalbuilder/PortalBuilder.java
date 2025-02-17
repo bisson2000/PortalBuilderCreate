@@ -3,9 +3,16 @@ package com.bisson2000.portalbuildercreate.portalbuilder;
 import com.bisson2000.portalbuildercreate.PortalBuilderCreate;
 import com.bisson2000.portalbuildercreate.block.ModBlocks;
 import com.bisson2000.portalbuildercreate.config.PortalBuilderCreateConfig;
+import com.bisson2000.portalbuildercreate.networking.ModMessages;
+import com.bisson2000.portalbuildercreate.networking.packet.ShowCreditsS2C;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.kyrptonaught.customportalapi.util.ColorUtil;
+import net.kyrptonaught.customportalapi.util.SHOULDTP;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.WinScreen;
+import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
@@ -71,9 +78,17 @@ public abstract class PortalBuilder {
             customPortalBuilder.flatPortal();
         }
 
+        // force size
         if (customPortal.forceSize) {
             customPortalBuilder.forcedSize(customPortal.forcedSizeWidth, customPortal.forcedSizeHeight);
         }
+
+        // credits
+        customPortalBuilder.registerPostTPEvent((entity) -> {
+            if (entity instanceof ServerPlayer serverPlayer) {
+                ModMessages.sendToClient(new ShowCreditsS2C(), serverPlayer);
+            }
+        });
 
         // Register builder
         customPortalBuilder.registerPortal();
