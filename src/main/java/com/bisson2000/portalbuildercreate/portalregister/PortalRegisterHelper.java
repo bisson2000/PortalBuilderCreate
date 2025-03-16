@@ -1,16 +1,18 @@
 package com.bisson2000.portalbuildercreate.portalregister;
 
 import com.bisson2000.portalbuildercreate.PortalBuilderCreate;
+import com.simibubi.create.Create;
+import com.simibubi.create.api.contraption.train.PortalTrackProvider;
 import com.simibubi.create.content.contraptions.glue.SuperGlueEntity;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
-import com.simibubi.create.foundation.utility.BlockFace;
-import com.simibubi.create.foundation.utility.Pair;
+import net.createmod.catnip.math.BlockFace;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.kyrptonaught.customportalapi.util.CustomPortalHelper;
 import net.kyrptonaught.customportalapi.util.CustomTeleporter;
 import net.kyrptonaught.customportalapi.util.PortalLink;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.util.ITeleporter;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.function.Function;
@@ -30,21 +33,21 @@ public class PortalRegisterHelper {
 
     public static void RegisterAllPortals() {
         CustomPortalApiRegistry.getAllPortalLinks().forEach(portalLink -> {
-            AllPortalTracks.registerIntegration(portalLink.getPortalBlock(), inbound -> {
-                return createPortalTrackProvider(inbound, portalLink);
+            AllPortalTracks.tryRegisterIntegration(ForgeRegistries.BLOCKS.getKey(portalLink.getPortalBlock()), (inbound, blockface) -> {
+                return createPortalTrackProvider(inbound, blockface, portalLink);
             });
         });
     }
 
-    private static Pair<ServerLevel, BlockFace> createPortalTrackProvider(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
+    private static PortalTrackProvider.Exit createPortalTrackProvider(ServerLevel inbound, BlockFace blockFace, PortalLink portalLink) {
         ResourceKey<Level> fromDimension = ResourceKey.create(Registries.DIMENSION, portalLink.returnDimID);
         ResourceKey<Level> toDimension = ResourceKey.create(Registries.DIMENSION, portalLink.dimID);
-        return standardPortalProvider(inbound, fromDimension, toDimension, serverLevel -> {
-            return createPortalForcer(inbound, portalLink);
+        return standardPortalProvider(inbound, blockFace, fromDimension, toDimension, serverLevel -> {
+            return createPortalForcer(inbound, blockFace, portalLink);
         });
     }
 
-    public static ITeleporter createPortalForcer(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
+    public static ITeleporter createPortalForcer(ServerLevel inbound, BlockFace blockFace, PortalLink portalLink) {
         return new ITeleporter() {
             @Override
             public @Nullable PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
@@ -52,8 +55,8 @@ public class PortalRegisterHelper {
                 return CustomTeleporter.customTPTarget(
                         destWorld,
                         entity,
-                        inbound.getSecond().getConnectedPos(),
-                        CustomPortalHelper.getPortalBase(inbound.getFirst(), entity.getOnPos()),
+                        blockFace.getConnectedPos(),
+                        CustomPortalHelper.getPortalBase(inbound, entity.getOnPos()),
                         portalLink.getFrameTester());
             }
 
@@ -61,14 +64,14 @@ public class PortalRegisterHelper {
     }
 
     /**
-     * Copied from AllPortalTracks:standardPortalProvider, and changed 1 line
+     * Copied from AllPortalTracks:standardPortalProvider, and changed 1 line: BlockStateProperties.AXIS
      * See <a href="https://github.com/Creators-of-Create/Create/blob/d39f89983a6c36dcacda6635c2094c826703ed49/src/main/java/com/simibubi/create/content/trains/track/AllPortalTracks.java#L88">Github</a>
      *
      * */
-    public static Pair<ServerLevel, BlockFace> standardPortalProvider(Pair<ServerLevel, BlockFace> inbound,
+    public static PortalTrackProvider.Exit standardPortalProvider(ServerLevel inbound, BlockFace blockFace,
                                                                       ResourceKey<Level> firstDimension, ResourceKey<Level> secondDimension,
                                                                       Function<ServerLevel, ITeleporter> customPortalForcer) {
-        ServerLevel level = inbound.getFirst();
+        ServerLevel level = inbound;
         ResourceKey<Level> resourcekey = level.dimension() == secondDimension ? firstDimension : secondDimension;
         MinecraftServer minecraftserver = level.getServer();
         ServerLevel otherLevel = minecraftserver.getLevel(resourcekey);
@@ -76,7 +79,7 @@ public class PortalRegisterHelper {
         if (otherLevel == null || !minecraftserver.isNetherEnabled())
             return null;
 
-        BlockFace inboundTrack = inbound.getSecond();
+        BlockFace inboundTrack = blockFace;
         BlockPos portalPos = inboundTrack.getConnectedPos();
         BlockState portalState = level.getBlockState(portalPos);
         ITeleporter teleporter = customPortalForcer.apply(otherLevel);
@@ -99,7 +102,7 @@ public class PortalRegisterHelper {
         if (targetDirection.getAxis() == otherPortalState.getValue(BlockStateProperties.AXIS))
             targetDirection = targetDirection.getClockWise();
         BlockPos otherPos = otherPortalPos.relative(targetDirection);
-        return Pair.of(otherLevel, new BlockFace(otherPos, targetDirection.getOpposite()));
+        return new PortalTrackProvider.Exit(otherLevel, new BlockFace(otherPos, targetDirection.getOpposite()));
 
     }
 }
