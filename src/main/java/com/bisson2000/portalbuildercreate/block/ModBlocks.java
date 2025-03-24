@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -63,16 +64,25 @@ public class ModBlocks {
             @Override
             public void entityInside(@NotNull BlockState state, @NotNull Level world, BlockPos pos, @NotNull Entity entity) {
                 super.entityInside(state, world, pos, entity);
-                EntityInCustomPortal entityInPortal = (EntityInCustomPortal)entity;
-                if (entity.canChangeDimensions() && entity instanceof LocalPlayer localPlayer) {
-                    if (entity.isOnPortalCooldown()) {
-                        entity.setPortalCooldown();
-                    } else {
-                        localPlayer.isInsidePortal = true;//!entityInPortal.didTeleport();
-                    }
+                if (world.isClientSide()) {
+                    EntityInsideClientHandler.handle(entity);
                 }
             }
         });
+    }
+
+    @OnlyIn(Dist.CLIENT) // This ensures the class is only loaded on the client
+    private static class EntityInsideClientHandler {
+        public static void handle(@NotNull Entity entity) {
+            //EntityInCustomPortal entityInPortal = (EntityInCustomPortal)entity;
+            if (entity instanceof LocalPlayer localPlayer && localPlayer.canChangeDimensions()) {
+                if (localPlayer.isOnPortalCooldown()) {
+                    localPlayer.setPortalCooldown();
+                } else {
+                    localPlayer.isInsidePortal = true;//!entityInPortal.didTeleport();
+                }
+            }
+        }
     }
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
