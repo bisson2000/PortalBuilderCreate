@@ -1,7 +1,7 @@
 Portal Builder: Create Edition
 =======
 
-<a href="https://www.curseforge.com/minecraft/mc-mods/portal-builder-create-edition" target="_blank"><img src="https://cf.way2muchnoise.eu/portal-builder-create-edition.svg?badge_style=flat"/></a><a href="https://www.curseforge.com/minecraft/mc-mods/portal-builder-create-edition" target="_blank"><img src="http://cf.way2muchnoise.eu/versions/portal-builder-create-edition.svg?badge_style=flat" /></a>
+<a href="https://www.curseforge.com/minecraft/mc-mods/portal-builder-create-edition" target="_blank"><img src="https://cf.way2muchnoise.eu/1220989.svg?badge_style=flat"/></a><a href="https://www.curseforge.com/minecraft/mc-mods/portal-builder-create-edition" target="_blank"><img src="http://cf.way2muchnoise.eu/versions/1220989.svg?badge_style=flat" /></a>
 
 ![logo](logo.png)
 
