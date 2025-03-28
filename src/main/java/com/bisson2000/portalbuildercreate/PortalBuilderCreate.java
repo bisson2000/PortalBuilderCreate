@@ -41,6 +41,10 @@ public class PortalBuilderCreate
      * */
     public static int NUMBER_OF_PORTALS_ALLOWED = 100;
 
+    public PortalBuilderCreate() {
+        this(FMLJavaModLoadingContext.get());
+    }
+
     public PortalBuilderCreate(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();

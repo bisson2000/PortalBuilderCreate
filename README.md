@@ -1,10 +1,26 @@
+Portal Builder: Create Edition
+=======
+
+<a href="https://www.curseforge.com/minecraft/mc-mods/portal-builder-create-edition" target="_blank"><img src="https://cf.way2muchnoise.eu/1220989.svg?badge_style=flat"/></a><a href="https://www.curseforge.com/minecraft/mc-mods/portal-builder-create-edition" target="_blank"><img src="http://cf.way2muchnoise.eu/versions/1220989.svg?badge_style=flat" /></a>
+
+![logo](logo.png)
 
 Where can I find and download the mod?
 =======
 
+You can find the mod on CurseForge https://www.curseforge.com/minecraft/mc-mods/portal-builder-create-edition
+
 Dependencies:
 =======
-This mod depends on https://www.curseforge.com/minecraft/mc-mods/custom-portal-api-reforged
+This mod depends on
+- https://www.curseforge.com/minecraft/mc-mods/custom-portal-api-reforged
+- https://www.curseforge.com/minecraft/mc-mods/create
+
+
+Choosing the version that is right for you
+=======
+For Create versions below 6.0, use the 1.0.x release\
+For Create versions equal or above 6.0.3, use the 1.1.x release
 
 Credits:
 =======
